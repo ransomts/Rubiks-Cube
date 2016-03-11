@@ -37,13 +37,9 @@ void print_moveset(node_t * bottom_node) {
 
 void brute_force(cube * initial_state, cube * solution_state) {
 
-   printf("flag 1");
-   
    node_t * initial_condition = malloc(sizeof(node_t));
    initial_condition -> cube_state = initial_state;
    strcpy(initial_condition -> move_taken, "Start State");
-
-   printf("flag 2");
 
    node_t * node_pointer = tree_contains_cube(initial_condition, solution_state);
    while (node_pointer == NULL) {

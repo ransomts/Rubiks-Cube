@@ -3,7 +3,6 @@
 #include "solve_cube.h"
 
 int main(){
-   printf("flag 0");
    // Sets up a solved cube, and a cube to solve
    cube *c1 = malloc(sizeof(cube));
    cube *c2 = malloc(sizeof(cube));
