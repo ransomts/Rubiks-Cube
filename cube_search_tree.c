@@ -84,9 +84,9 @@ void print_tree(node_t * tree) {
 
    if (tree == NULL) { return; }
    printf("%s %s\n", tree -> cube_state -> state, tree -> move_taken);
-   for (int i = 0; i < 6; i++) { print_tree(tree -> cw_moves[i]); }
-   for (int i = 0; i < 6; i++) { print_tree(tree -> ccw_moves[i]); }
-   for (int i = 0; i < 6; i++) { print_tree(tree -> half_moves[i]); }
+   for (int i = 0; i < 6; i++) { printf("."); print_tree(tree -> cw_moves[i]); }
+   for (int i = 0; i < 6; i++) { printf("."); print_tree(tree -> ccw_moves[i]); }
+   for (int i = 0; i < 6; i++) { printf("."); print_tree(tree -> half_moves[i]); }
 }
 /*
 int main() {

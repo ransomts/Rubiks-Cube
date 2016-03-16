@@ -16,14 +16,19 @@ node_t * tree_contains_cube(node_t * tree, cube * solution_state){
 
    for (int i = 0; i < 6; i++) {
       // big old segfault right here mhmm
-      cube * cw_move = tree -> cw_moves[i] -> cube_state;
-      if (cubes_equal(cw_move, solution_state)) { return tree -> cw_moves[i]; }
-      
-      cube * ccw_move = tree -> ccw_moves[i] -> cube_state;
-      if (cubes_equal(ccw_move, solution_state)) { return tree -> ccw_moves[i]; }
+      if (tree -> cw_moves[i] != NULL) {
+	 cube * cw_move = tree -> cw_moves[i] -> cube_state;
+	 if (cubes_equal(cw_move, solution_state)) { return tree -> cw_moves[i]; }
+      }
+      if (tree -> ccw_moves[i] != NULL) {
+	 cube * ccw_move = tree -> ccw_moves[i] -> cube_state;
+	 if (cubes_equal(ccw_move, solution_state)) { return tree -> ccw_moves[i]; }
+      }
+      if (tree -> half_moves[i] != NULL) {
 
-      cube * half_move = tree -> half_moves[i] -> cube_state;
-      if (cubes_equal(half_move, solution_state)) { return tree -> half_moves[i]; }
+	 cube * half_move = tree -> half_moves[i] -> cube_state;
+	 if (cubes_equal(half_move, solution_state)) { return tree -> half_moves[i]; }
+      }
    }
 
    return NULL;
@@ -38,11 +43,10 @@ void print_moveset(node_t * bottom_node) {
    }
 }
 
-void make_one_layer(cube * initial) {
+void make_one_layer(node_t * root) {
 
-   node_t * new_cube_tree = instantiate_cube_tree(initial);
-   insert_every_move(new_cube_tree);
-   print_tree(new_cube_tree);
+   insert_every_move(root);
+   //print_tree(root);
 }
 
 void brute_force(cube * initial_state, cube * solution_state) {

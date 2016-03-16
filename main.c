@@ -15,8 +15,11 @@ int main(){
       }
    }
    //printf("flag 3\n");
-   //make_one_layer(c1);
-   turn_side(c2, FRONT, CW);
-   brute_force(c2, c1);
+   
+   node_t * t = instantiate_cube_tree(c1);
+   make_one_layer(t);
+   make_one_layer(t -> cw_moves[0]);
+   print_tree(t);
+   //brute_force(c2, c1);
    return EXIT_SUCCESS;
 }
