@@ -15,6 +15,7 @@ node_t * tree_contains_cube(node_t * tree, cube * solution_state){
    if (cubes_equal(tree -> cube_state, solution_state)) { return tree; }
 
    for (int i = 0; i < 6; i++) {
+      // big old segfault right here mhmm
       cube * cw_move = tree -> cw_moves[i] -> cube_state;
       if (cubes_equal(cw_move, solution_state)) { return tree -> cw_moves[i]; }
       
@@ -46,15 +47,11 @@ void make_one_layer(cube * initial) {
 
 void brute_force(cube * initial_state, cube * solution_state) {
 
-   node_t * initial_condition = malloc(sizeof(node_t));
-   initial_condition -> cube_state = initial_state;
-   strcpy(initial_condition -> move_taken, "Start State");
-
-   node_t * node_pointer = tree_contains_cube(initial_condition, solution_state);
+   node_t * tree_root = instantiate_cube_tree(initial_state);
+   node_t * node_pointer = tree_contains_cube(tree_root, solution_state);
    while (node_pointer == NULL) {
-      insert_every_move(initial_condition);
-      node_pointer = tree_contains_cube(initial_condition, solution_state);
+      insert_every_move(tree_root);
+      node_pointer = tree_contains_cube(tree_root, solution_state);
    }
    print_moveset(node_pointer);
 }
-
