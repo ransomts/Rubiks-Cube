@@ -9,6 +9,7 @@ typedef struct node {
    struct node * half_moves[6];
 } node_t;
 
+node_t * instantiate_cube_tree(cube * c);
 void insert_every_CW_move(node_t *);
 void insert_every_CCW_move(node_t *);
 void insert_every_HALF_move(node_t *);

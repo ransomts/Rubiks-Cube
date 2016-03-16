@@ -14,8 +14,9 @@ int main(){
 	 }
       }
    }
-   printf("flag 3");
+   //printf("flag 3\n");
+   make_one_layer(c1);
    turn_side(c2, FRONT, CW);
-   brute_force(c2, c1);
+   //brute_force(c2, c1);
    return EXIT_SUCCESS;
 }

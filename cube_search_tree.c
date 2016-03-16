@@ -20,7 +20,7 @@ void insert_one_move(node_t * tree, side s, direction d) {
       case BOTTOM: { strcpy(new_node -> move_taken, "BOTTOM CW"); break; }
       case RIGHT: { strcpy(new_node -> move_taken, "RIGHT CW"); break; }
       case LEFT: { strcpy(new_node -> move_taken, "LEFT CW"); break; }
-      }
+      } break;
    }
    case CCW: {
       switch (s) {
@@ -30,7 +30,7 @@ void insert_one_move(node_t * tree, side s, direction d) {
       case BOTTOM: { strcpy(new_node -> move_taken, "BOTTOM CCW"); break; }
       case RIGHT: { strcpy(new_node -> move_taken, "RIGHT CCW"); break; }
       case LEFT: { strcpy(new_node -> move_taken, "LEFT CCW"); break; }
-      }
+      } break;
    }
    case HALF: {
       switch (s) {
@@ -41,7 +41,7 @@ void insert_one_move(node_t * tree, side s, direction d) {
       case RIGHT: { strcpy(new_node -> move_taken, "RIGHT HALF"); break; }
       case LEFT: { strcpy(new_node -> move_taken, "LEFT HALF"); break; }
       }
-   }
+   } break;
    }
    
    turn_side(new_node -> cube_state, s, d);
@@ -71,10 +71,19 @@ void insert_every_move(node_t * tree) {
    insert_every_CW_move(tree);
 }
 
+node_t * instantiate_cube_tree(cube * c) {
+
+   node_t * new_root = malloc(sizeof(node_t));
+   new_root -> cube_state = c;
+   strcpy(new_root -> move_taken,"Initial Cube\n");
+   
+   return new_root;
+}
+
 void print_tree(node_t * tree) {
 
    if (tree == NULL) { return; }
-   printf("%s\n", tree -> cube_state -> state);
+   printf("%s %s\n", tree -> cube_state -> state, tree -> move_taken);
    for (int i = 0; i < 6; i++) { print_tree(tree -> cw_moves[i]); }
    for (int i = 0; i < 6; i++) { print_tree(tree -> ccw_moves[i]); }
    for (int i = 0; i < 6; i++) { print_tree(tree -> half_moves[i]); }
