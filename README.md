@@ -1,6 +1,6 @@
 # Rubiks-Cube
 
-Solve a rukiks cube...
+Solve a rubiks cube...
 brute force is one method to solve, but how much
 computation can be saved by solving to intermediate steps?
 obviously having the algorithms to move between the
